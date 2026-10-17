@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where([data-theme="evening"], [data-theme="evening"] *, .dark, .dark *));
+
+/*
+  TAILWIND CSS v4 THEME CONFIGURATION
+  In Tailwind v4, custom utility classes and design tokens are declared 
+  directly in CSS using the @theme directive. This avoids legacy 
+  tailwind.config.js boilerplate while offering full compile-time performance.
+*/
+@theme {
+  /* Typography */
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: 'Lora', 'Georgia', serif;
+
+  /* Cozy Day Tokens */
+  --color-cozy-cream: #fdfbf7;
+  --color-cozy-parchment: #f7f2ea;
+  --color-cozy-sand: #ede4d8;
+  --color-cozy-amber: #e09f3e;
+  --color-cozy-wood: #5e4b3c;
+  --color-cozy-ink: #2b2622;
+  --color-cozy-muted: #736b63;
+
+  /* Cozy Evening Tokens */
+  --color-twilight-bg: #13111c;
+  --color-twilight-surface: #1d1a29;
+  --color-twilight-border: #2e2a40;
+  --color-fairy-gold: #ffd166;
+  --color-twilight-text: #f0ecf4;
+  --color-twilight-muted: #a39eb2;
+}
+
+/*
+  DYNAMIC THEME VARIABLES
+  These CSS custom properties allow instantaneous and smooth transitions
+  between Day and Evening modes across the entire tree without expensive 
+  component re-rendering.
+*/
+:root,
+[data-theme="day"] {
+  --bg-app: #fdfbf7;
+  --bg-surface: #ffffff;
+  --bg-surface-subtle: #f7f2ea;
+  --border-subtle: #ede4d8;
+  --text-main: #2b2622;
+  --text-muted: #736b63;
+  --accent-highlight: #e09f3e;
+  --fairy-light-glow: rgba(224, 159, 62, 0.15);
+  --monitor-glow: rgba(147, 197, 253, 0.25);
+  --theme-transition: background-color 450ms cubic-bezier(0.4, 0, 0.2, 1),
+                      color 450ms cubic-bezier(0.4, 0, 0.2, 1),
+                      border-color 450ms cubic-bezier(0.4, 0, 0.2, 1),
+                      box-shadow 450ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="evening"] {
+  --bg-app: #13111c;
+  --bg-surface: #1d1a29;
+  --bg-surface-subtle: #242033;
+  --border-subtle: #2e2a40;
+  --text-main: #f0ecf4;
+  --text-muted: #a39eb2;
+  --accent-highlight: #ffd166;
+  --fairy-light-glow: rgba(255, 209, 102, 0.5);
+  --monitor-glow: rgba(167, 139, 250, 0.45);
+}
+
+/* Base Body Styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  transition: var(--theme-transition);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+}
+
+/* Accessibility: Respect Reduced Motion Preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Subtle sequential pulse for loading screen dots */
+@keyframes dotPulse {
+  0%, 100% {
+    opacity: 0.25;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+
