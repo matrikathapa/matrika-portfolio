@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { motion, useReducedMotion } from 'motion/react';
+import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import SectionWrapper from '../../../components/SectionWrapper';
 import { EASE_COZY, VIEWPORT_ONCE } from '../../../utils/motion';
 
@@ -257,7 +257,7 @@ function ProjectCircle({
           blur-xl
           transition-all
           duration-500
-          group-hover:bg-[#d97732]/20
+          group-hover:bg-[#d97732]/25
         "
         style={{
           opacity: isHovered ? 1 : 0.6,
@@ -286,13 +286,14 @@ function ProjectCircle({
           shadow-[0_10px_35px_rgba(74,59,50,0.10)]
           transition-all
           duration-500
-          hover:border-[#d97732]/70
-          hover:shadow-[0_0_35px_rgba(217,119,50,0.25)]
+          group-hover:scale-105
+          group-hover:border-[#d97732]
+          group-hover:shadow-[0_0_35px_rgba(217,119,50,0.3)]
           dark:border-[#d97732]/35
           dark:bg-[#241520]
           dark:shadow-[0_10px_35px_rgba(0,0,0,0.35)]
-          dark:hover:border-[#d97732]/80
-          dark:hover:shadow-[0_0_35px_rgba(217,119,50,0.35)]
+          dark:group-hover:border-[#d97732]
+          dark:group-hover:shadow-[0_0_40px_rgba(217,119,50,0.4)]
           sm:h-[136px]
           sm:w-[136px]
         "
@@ -429,7 +430,11 @@ function InspectPanel({ project, onClose }) {
   if (!project) return null;
 
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.25 }}
       className="
         fixed
         inset-0
@@ -437,15 +442,19 @@ function InspectPanel({ project, onClose }) {
         flex
         items-center
         justify-center
-        bg-[#2d211e]/35
-        dark:bg-[#0d0912]/80
+        bg-[#2d211e]/40
+        dark:bg-[#0d0912]/85
         px-5
         backdrop-blur-sm
       "
       onClick={onClose}
     >
-      <div
+      <motion.div
         role="dialog"
+        initial={{ opacity: 0, scale: 0.94, y: 16 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.94, y: 16 }}
+        transition={{ duration: 0.35, ease: EASE_COZY }}
         aria-modal="true"
         aria-label={`Inspect ${project.title}`}
         onClick={(e) => e.stopPropagation()}
@@ -692,8 +701,8 @@ function InspectPanel({ project, onClose }) {
             <span>↗</span>
           </a>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }
 
@@ -810,10 +819,10 @@ export default function ProjectsSection() {
         ================================================= */}
 
         <motion.div
-          initial={shouldReduce ? false : { opacity: 0, y: 16 }}
+          initial={shouldReduce ? false : { opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={VIEWPORT_ONCE}
-          transition={{ duration: 0.55, ease: EASE_COZY }}
+          transition={{ duration: 0.65, ease: EASE_COZY }}
           className="
             relative
             z-10
@@ -876,10 +885,10 @@ export default function ProjectsSection() {
 
         <motion.div
             ref={universeRef}
-            initial={shouldReduce ? false : { opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={shouldReduce ? false : { opacity: 0, y: 35, scale: 0.94 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 0.7, ease: EASE_COZY }}
+            transition={{ duration: 0.85, ease: EASE_COZY }}
             className="relative z-10 mx-auto flex h-[680px] w-full max-w-6xl items-center justify-center overflow-hidden rounded-[2rem] border border-[#d97732]/15 bg-[#fffdf8] shadow-[0_15px_50px_rgba(74,59,50,0.06)] dark:border-[#d97732]/25 dark:bg-[#191019] dark:shadow-[0_25px_70px_rgba(0,0,0,0.45)] sm:h-[680px] md:h-[700px]">
           {/* Inner frame */}
           <div
@@ -1126,24 +1135,32 @@ export default function ProjectsSection() {
             FOOTNOTE
         ================================================= */}
 
-        <div className="relative z-10 mt-10 text-center">
+        <motion.div
+          initial={shouldReduce ? false : { opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={VIEWPORT_ONCE}
+          transition={{ duration: 0.65, ease: EASE_COZY, delay: 0.2 }}
+          className="relative z-10 mt-10 text-center"
+        >
           <p
             className="font-hand-custom text-sm text-[#8b6c5c]/75 dark:text-[#c59b7e]/70">
             More experiments will find their way here. ✦
           </p>
-        </div>
+        </motion.div>
       </SectionWrapper>
 
       {/* =====================================================
           INSPECT MODAL
       ====================================================== */}
 
-      {selectedProject && (
-        <InspectPanel
-          project={selectedProject}
-          onClose={() => setSelectedProject(null)}
-        />
-      )}
+      <AnimatePresence>
+        {selectedProject && (
+          <InspectPanel
+            project={selectedProject}
+            onClose={() => setSelectedProject(null)}
+          />
+        )}
+      </AnimatePresence>
     </>
   );
 }

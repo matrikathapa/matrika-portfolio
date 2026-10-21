@@ -213,10 +213,10 @@ export default function JourneySection() {
       ==================================================== */}
 
       <motion.div
-        initial={shouldReduce ? false : { opacity: 0, y: 16 }}
+        initial={shouldReduce ? false : { opacity: 0, y: 28 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={VIEWPORT_ONCE}
-        transition={{ duration: 0.55, ease: EASE_COZY }}
+        transition={{ duration: 0.65, ease: EASE_COZY }}
         className="relative z-10 mx-auto mb-12 max-w-3xl text-center"
       >
         <p
@@ -269,10 +269,10 @@ export default function JourneySection() {
       ==================================================== */}
 
       <motion.div
-        initial={shouldReduce ? false : { opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={shouldReduce ? false : { opacity: 0, y: 35, scale: 0.98 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
         viewport={{ once: true, amount: 0.15 }}
-        transition={{ duration: 0.65, ease: EASE_COZY }}
+        transition={{ duration: 0.75, ease: EASE_COZY }}
         className="
           relative
           mx-auto
@@ -353,9 +353,13 @@ export default function JourneySection() {
             ================================================ */}
 
             <div className="relative flex items-start gap-4">
-              {journeyItems.map((item) => (
-                <article
+              {journeyItems.map((item, idx) => (
+                <motion.article
                   key={item.id}
+                  initial={shouldReduce ? false : { opacity: 0, y: 26, scale: 0.94 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  viewport={VIEWPORT_ONCE}
+                  transition={{ duration: 0.6, ease: EASE_COZY, delay: idx * 0.08 }}
                   className="
                     group
                     relative
@@ -436,14 +440,22 @@ export default function JourneySection() {
                       dark:border-[#1e121a]
                     "
                   />
-                </article>
+                </motion.article>
               ))}
 
               {/* =============================================
                   OPEN-ENDED FUTURE
               ============================================== */}
 
-              <article
+              <motion.article
+                initial={shouldReduce ? false : { opacity: 0, y: 26, scale: 0.94 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={VIEWPORT_ONCE}
+                transition={{
+                  duration: 0.6,
+                  ease: EASE_COZY,
+                  delay: journeyItems.length * 0.08,
+                }}
                 className="
                   group
                   relative
@@ -532,7 +544,7 @@ export default function JourneySection() {
                 >
                   More things to learn, build and discover.
                 </p>
-              </article>
+              </motion.article>
             </div>
           </div>
         </div>
@@ -578,10 +590,15 @@ export default function JourneySection() {
       </motion.div>
 
       {/* Bottom note */}
-      <p
-        className="mt-7 text-center font-hand-custom text-sm text-[#8b6c5c]/70 dark:text-[#c59b7e]/60">
+      <motion.p
+        initial={shouldReduce ? false : { opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={VIEWPORT_ONCE}
+        transition={{ duration: 0.65, ease: EASE_COZY, delay: 0.2 }}
+        className="mt-7 text-center font-hand-custom text-sm text-[#8b6c5c]/70 dark:text-[#c59b7e]/60"
+      >
         Still becoming. Still building. Still moving forward. ✦
-      </p>
+      </motion.p>
     </SectionWrapper>
   );
 }

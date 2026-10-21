@@ -31,10 +31,10 @@ function Sparkle({ className = '' }) {
 function DeskScene({ shouldReduce }) {
   return (
     <motion.div
-      initial={shouldReduce ? false : { opacity: 0, x: -24 }}
+      initial={shouldReduce ? false : { opacity: 0, x: -40 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={VIEWPORT_ONCE}
-      transition={{ duration: 0.65, ease: EASE_COZY }}
+      transition={{ duration: 0.75, ease: EASE_COZY }}
       aria-hidden="true"
       className="
         pointer-events-none
@@ -281,10 +281,10 @@ export default function ContactSection() {
       >
         {/* Heading */}
         <motion.div
-          initial={shouldReduce ? false : { opacity: 0, y: 16 }}
+          initial={shouldReduce ? false : { opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={VIEWPORT_ONCE}
-          transition={{ duration: 0.55, ease: EASE_COZY }}
+          transition={{ duration: 0.65, ease: EASE_COZY }}
           className="mb-9 text-center md:mb-10"
         >
           <p
@@ -345,10 +345,10 @@ export default function ContactSection() {
         ================================================= */}
 
         <motion.div
-          initial={shouldReduce ? false : { opacity: 0, x: 20, rotate: 1 }}
+          initial={shouldReduce ? false : { opacity: 0, x: 36, rotate: 1.5 }}
           whileInView={{ opacity: 1, x: 0, rotate: 0 }}
           viewport={VIEWPORT_ONCE}
-          transition={{ duration: 0.65, ease: EASE_COZY }}
+          transition={{ duration: 0.75, ease: EASE_COZY, delay: 0.15 }}
           className="relative mx-auto max-w-2xl"
         >
           {/* Tape */}
@@ -683,7 +683,13 @@ export default function ContactSection() {
             CLOSING LINE
         ================================================= */}
 
-        <div className="mt-9 text-center">
+        <motion.div
+          initial={shouldReduce ? false : { opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={VIEWPORT_ONCE}
+          transition={{ duration: 0.65, ease: EASE_COZY, delay: 0.2 }}
+          className="mt-9 text-center"
+        >
           <p
             className="
               font-hand-custom
@@ -699,7 +705,7 @@ export default function ContactSection() {
           <div className="mt-3 text-xs tracking-widest text-[#d97732]/60 dark:text-[#e8a067]">
             ✦ &nbsp; THANKS FOR STOPPING BY &nbsp; ✦
           </div>
-        </div>
+        </motion.div>
       </div>
     </SectionWrapper>
   );

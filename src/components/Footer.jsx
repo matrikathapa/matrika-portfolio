@@ -28,10 +28,10 @@ export default function Footer() {
       </span>
 
       <motion.div
-        initial={shouldReduce ? false : { opacity: 0, y: 14 }}
+        initial={shouldReduce ? false : { opacity: 0, y: 28 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={VIEWPORT_ONCE}
-        transition={{ duration: 0.55, ease: EASE_COZY }}
+        transition={{ duration: 0.65, ease: EASE_COZY }}
         className="mx-auto max-w-6xl"
       >
 

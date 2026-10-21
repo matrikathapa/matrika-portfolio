@@ -626,14 +626,17 @@ function HobbyCard({ hobby, index, visible }) {
           pb-4
           shadow-[0_12px_30px_rgba(91,61,45,0.12)]
           transition-all
-          duration-500
-          hover:-translate-y-2
+          duration-400
+          hover:-translate-y-2.5
+          hover:scale-[1.02]
           hover:rotate-0
-          hover:shadow-[0_18px_40px_rgba(91,61,45,0.18)]
+          hover:border-[#d97732]/50
+          hover:shadow-[0_22px_45px_rgba(91,61,45,0.22)]
           dark:border-[#d6b996]/30
           dark:bg-[#281825]
           dark:shadow-[0_12px_30px_rgba(0,0,0,0.40)]
-          dark:hover:shadow-[0_18px_40px_rgba(0,0,0,0.50)]
+          dark:hover:border-[#d97732]/60
+          dark:hover:shadow-[0_22px_45px_rgba(0,0,0,0.60)]
         "
       >
         {/* Photo */}
@@ -1129,7 +1132,7 @@ export default function CreativeCorner() {
           opacity: 0;
           transform:
             translate3d(
-              calc((var(--card-index, 1) - 2) * 40px),
+              calc((var(--card-index, 1) - 2) * 45px),
               90px,
               0
             )
@@ -1137,14 +1140,14 @@ export default function CreativeCorner() {
             scale(0.88);
           transition:
             opacity 700ms ease,
-            transform 850ms cubic-bezier(.22,.8,.25,1);
+            transform 850ms cubic-bezier(.22, 1, .36, 1);
           transition-delay: var(--card-delay);
         }
 
         .creative-card:nth-child(1) {
           --card-index: 1;
           transform:
-            translate3d(-90px, 70px, 0)
+            translate3d(-90px, 80px, 0)
             rotate(-13deg)
             scale(.88);
         }
@@ -1152,7 +1155,7 @@ export default function CreativeCorner() {
         .creative-card:nth-child(2) {
           --card-index: 2;
           transform:
-            translate3d(50px, 90px, 0)
+            translate3d(50px, 95px, 0)
             rotate(12deg)
             scale(.88);
         }
@@ -1160,7 +1163,7 @@ export default function CreativeCorner() {
         .creative-card:nth-child(3) {
           --card-index: 3;
           transform:
-            translate3d(-40px, 100px, 0)
+            translate3d(-40px, 105px, 0)
             rotate(-10deg)
             scale(.88);
         }
@@ -1168,7 +1171,7 @@ export default function CreativeCorner() {
         .creative-card:nth-child(4) {
           --card-index: 4;
           transform:
-            translate3d(100px, 75px, 0)
+            translate3d(100px, 85px, 0)
             rotate(14deg)
             scale(.88);
         }

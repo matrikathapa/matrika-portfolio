@@ -214,7 +214,11 @@ export default function AboutSection() {
           ABOUT CARD
       ========================================================== */}
 
-      <div
+      <motion.div
+        initial={shouldReduce ? false : { opacity: 0, y: 36 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={VIEWPORT_ONCE}
+        transition={{ duration: 0.7, ease: EASE_COZY }}
         className="
           relative
           w-full
@@ -274,10 +278,10 @@ export default function AboutSection() {
           ==================================================== */}
 
           <motion.div
-            initial={shouldReduce ? false : { opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={shouldReduce ? false : { opacity: 0, scale: 0.88, y: 36 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
             viewport={VIEWPORT_ONCE}
-            transition={{ duration: 0.65, ease: EASE_COZY }}
+            transition={{ duration: 0.75, ease: EASE_COZY, delay: 0.12 }}
             className="flex justify-center lg:col-span-4"
           >
             <div
@@ -395,16 +399,16 @@ export default function AboutSection() {
               ABOUT TEXT
           ==================================================== */}
 
-          <motion.div
-            initial={shouldReduce ? false : { opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={VIEWPORT_ONCE}
-            transition={{ duration: 0.6, ease: EASE_COZY, delay: 0.1 }}
-            className="lg:col-span-8"
-          >
+          <div className="lg:col-span-8">
             <div className="max-w-3xl">
-              {/* Heading */}
-              <div className="mb-7 flex items-center gap-3">
+              {/* 1. Heading */}
+              <motion.div
+                initial={shouldReduce ? false : { opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={VIEWPORT_ONCE}
+                transition={{ duration: 0.6, ease: EASE_COZY, delay: 0.05 }}
+                className="mb-7 flex items-center gap-3"
+              >
                 <h2
                   className="
                     font-hand-custom
@@ -419,12 +423,16 @@ export default function AboutSection() {
                 </h2>
                 
                 <span aria-hidden="true" className="text-xl text-[var(--accent)]">
-                ❧
-              </span>
-              </div>
+                  ❧
+                </span>
+              </motion.div>
 
-              {/* Paragraph 1 */}
-              <p
+              {/* 2. Paragraph 1 */}
+              <motion.p
+                initial={shouldReduce ? false : { opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={VIEWPORT_ONCE}
+                transition={{ duration: 0.65, ease: EASE_COZY, delay: 0.22 }}
                 className="
                   max-w-3xl
                   text-base
@@ -435,10 +443,14 @@ export default function AboutSection() {
                 "
               >
                 Hey, I'm Matrika, a passionate developer who loves coding and building new, creative projects. I enjoy experimenting with ideas, learning by doing, and turning concepts into working, meaningful experiences.
-              </p>
+              </motion.p>
 
-              {/* Paragraph 2 */}
-              <p
+              {/* 3. Paragraph 2 */}
+              <motion.p
+                initial={shouldReduce ? false : { opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={VIEWPORT_ONCE}
+                transition={{ duration: 0.65, ease: EASE_COZY, delay: 0.36 }}
                 className="
                   mt-7
                   max-w-3xl
@@ -450,18 +462,24 @@ export default function AboutSection() {
                 "
               >
                 I aspire to continuously grow as a developer, sharpen my problem-solving skills, and become exceptionally skilled in coding. I'm always eager to learn new programming languages, explore modern technologies, and push myself beyond my comfort zone.
-              </p>
+              </motion.p>
 
-              {/* Small decorative line */}
-              <div className="mt-8 flex items-center gap-3">
+              {/* 4. Small decorative line */}
+              <motion.div
+                initial={shouldReduce ? false : { opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={VIEWPORT_ONCE}
+                transition={{ duration: 0.5, ease: EASE_COZY, delay: 0.48 }}
+                className="mt-8 flex items-center gap-3"
+              >
                 <span className="h-px w-16 bg-[#d97732]/30" />
                 <span className="text-xs text-[#d97732]/70">
                   ✦
                 </span>
                 <span className="h-px w-8 bg-[#d97732]/20" />
-              </div>
+              </motion.div>
             </div>
-          </motion.div>
+          </div>
         </div>
 
         {/* =====================================================
@@ -480,7 +498,7 @@ export default function AboutSection() {
             lg:block
           "
         />
-      </div>
+      </motion.div>
     </SectionWrapper>
   );
 }

@@ -15,7 +15,7 @@ import { useReducedMotion } from 'motion/react';
  *    receive instant, un-animated displays without layout shifts or delays.
  */
 
-export const EASE_COZY = [0.25, 0.1, 0.25, 1.0];
+export const EASE_COZY = [0.22, 1, 0.36, 1];
 
 export const VIEWPORT_ONCE = {
   once: true,
@@ -27,14 +27,14 @@ export const VIEWPORT_EARLY = {
   amount: 0.15,
 };
 
-// Fade up entrance variant
+// Noticeable fade-up entrance variant (24–36px movement, elegant deceleration)
 export const fadeUpVariant = {
-  hidden: { opacity: 0, y: 16 },
+  hidden: { opacity: 0, y: 32 },
   visible: (custom = {}) => ({
     opacity: 1,
     y: 0,
     transition: {
-      duration: custom.duration || 0.55,
+      duration: custom.duration || 0.65,
       delay: custom.delay || 0,
       ease: EASE_COZY,
     },
@@ -47,7 +47,22 @@ export const fadeInVariant = {
   visible: (custom = {}) => ({
     opacity: 1,
     transition: {
-      duration: custom.duration || 0.5,
+      duration: custom.duration || 0.6,
+      delay: custom.delay || 0,
+      ease: EASE_COZY,
+    },
+  }),
+};
+
+// Scale-up entrance variant (for cosmic / visual stages)
+export const scaleUpVariant = {
+  hidden: { opacity: 0, scale: 0.92, y: 28 },
+  visible: (custom = {}) => ({
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: {
+      duration: custom.duration || 0.75,
       delay: custom.delay || 0,
       ease: EASE_COZY,
     },
@@ -56,12 +71,12 @@ export const fadeInVariant = {
 
 // Slide in from left
 export const slideLeftVariant = {
-  hidden: { opacity: 0, x: -20 },
+  hidden: { opacity: 0, x: -36 },
   visible: (custom = {}) => ({
     opacity: 1,
     x: 0,
     transition: {
-      duration: custom.duration || 0.6,
+      duration: custom.duration || 0.7,
       delay: custom.delay || 0,
       ease: EASE_COZY,
     },
@@ -70,12 +85,12 @@ export const slideLeftVariant = {
 
 // Slide in from right (e.g. contact torn paper note)
 export const slideRightVariant = {
-  hidden: { opacity: 0, x: 20 },
+  hidden: { opacity: 0, x: 36 },
   visible: (custom = {}) => ({
     opacity: 1,
     x: 0,
     transition: {
-      duration: custom.duration || 0.6,
+      duration: custom.duration || 0.7,
       delay: custom.delay || 0,
       ease: EASE_COZY,
     },
@@ -83,7 +98,7 @@ export const slideRightVariant = {
 };
 
 // Container stagger
-export const staggerContainerVariant = (staggerChildren = 0.08, delayChildren = 0) => ({
+export const staggerContainerVariant = (staggerChildren = 0.12, delayChildren = 0) => ({
   hidden: {},
   visible: {
     transition: {

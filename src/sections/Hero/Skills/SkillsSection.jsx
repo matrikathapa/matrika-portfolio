@@ -126,11 +126,12 @@ function SkillCard({ skill }) {
   return (
     <motion.div
       variants={{
-        hidden: { opacity: 0, y: 12 },
+        hidden: { opacity: 0, y: 28, scale: 0.95 },
         visible: {
           opacity: 1,
           y: 0,
-          transition: { duration: 0.45, ease: EASE_COZY },
+          scale: 1,
+          transition: { duration: 0.6, ease: EASE_COZY },
         },
       }}
       className="
@@ -146,14 +147,14 @@ function SkillCard({ skill }) {
         shadow-[0_8px_25px_rgba(74,59,50,0.06)]
         transition-all
         duration-400
-        hover:-translate-y-1.5
-        hover:border-[#d97732]/35
-        hover:shadow-[0_14px_35px_rgba(217,119,50,0.13)]
+        hover:-translate-y-2
+        hover:border-[#d97732]/50
+        hover:shadow-[0_16px_40px_rgba(217,119,50,0.18)]
         dark:border-[#d97732]/20
         dark:bg-[#241622]
         dark:shadow-[0_8px_25px_rgba(0,0,0,0.25)]
-        dark:hover:border-[#d97732]/45
-        dark:hover:shadow-[0_14px_35px_rgba(217,119,50,0.2)]
+        dark:hover:border-[#d97732]/60
+        dark:hover:shadow-[0_16px_40px_rgba(217,119,50,0.25)]
       "
     >
       {/* Decorative corner */}
@@ -264,11 +265,11 @@ function SkillGroup({ group }) {
   return (
     <motion.div
       variants={{
-        hidden: { opacity: 0, y: 18 },
+        hidden: { opacity: 0, y: 36 },
         visible: {
           opacity: 1,
           y: 0,
-          transition: { duration: 0.55, ease: EASE_COZY },
+          transition: { duration: 0.7, ease: EASE_COZY },
         },
       }}
       className="
@@ -349,7 +350,7 @@ function SkillGroup({ group }) {
           hidden: {},
           visible: {
             transition: {
-              staggerChildren: 0.08,
+              staggerChildren: 0.1,
             },
           },
         }}
@@ -439,10 +440,10 @@ export default function SkillsSection() {
       ==================================================== */}
 
       <motion.div
-        initial={shouldReduce ? false : { opacity: 0, y: 16 }}
+        initial={shouldReduce ? false : { opacity: 0, y: 28 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={VIEWPORT_ONCE}
-        transition={{ duration: 0.55, ease: EASE_COZY }}
+        transition={{ duration: 0.65, ease: EASE_COZY }}
         className="
           relative
           z-10
@@ -512,7 +513,7 @@ export default function SkillsSection() {
           hidden: {},
           visible: {
             transition: {
-              staggerChildren: 0.12,
+              staggerChildren: 0.14,
             },
           },
         }}
@@ -536,7 +537,11 @@ export default function SkillsSection() {
           LITTLE FOOTNOTE
       ==================================================== */}
 
-      <div
+      <motion.div
+        initial={shouldReduce ? false : { opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={VIEWPORT_ONCE}
+        transition={{ duration: 0.65, ease: EASE_COZY, delay: 0.2 }}
         className="
           relative
           z-10
@@ -555,7 +560,7 @@ export default function SkillsSection() {
           Still learning. Still experimenting. Still adding
           things to the toolbox. ✦
         </p>
-      </div>
+      </motion.div>
     </SectionWrapper>
   );
 }

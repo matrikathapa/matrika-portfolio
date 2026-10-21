@@ -47,12 +47,12 @@ export default function HeroIntro({ className = '' }) {
   };
 
   const itemVariant = {
-    hidden: { opacity: 0, y: 12 },
+    hidden: { opacity: 0, y: 30 },
     visible: (customDelay = 0) => ({
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.5,
+        duration: 0.65,
         delay: customDelay,
         ease: EASE_COZY,
       },
@@ -68,7 +68,7 @@ export default function HeroIntro({ className = '' }) {
         variants={itemVariant}
         initial={shouldReduce ? false : 'hidden'}
         animate={isLoaded ? 'visible' : 'hidden'}
-        custom={0.05}
+        custom={0.08}
         className="flex items-center gap-2 drop-shadow-[0_1px_4px_rgba(0,0,0,0.5)]"
       >
         <span className="font-serif italic text-xl sm:text-2xl text-[#e09f3e] tracking-wide">
@@ -88,7 +88,7 @@ export default function HeroIntro({ className = '' }) {
         variants={itemVariant}
         initial={shouldReduce ? false : 'hidden'}
         animate={isLoaded ? 'visible' : 'hidden'}
-        custom={0.15}
+        custom={0.22}
         className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-none font-sans drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)]"
       >
         I’m Matrika.
@@ -99,7 +99,7 @@ export default function HeroIntro({ className = '' }) {
         variants={itemVariant}
         initial={shouldReduce ? false : 'hidden'}
         animate={isLoaded ? 'visible' : 'hidden'}
-        custom={0.25}
+        custom={0.36}
         className="space-y-3"
       >
         <p className="text-sm sm:text-base md:text-lg font-semibold text-[#e09f3e] leading-snug tracking-wide drop-shadow-[0_1px_6px_rgba(0,0,0,0.5)]">
@@ -115,7 +115,7 @@ export default function HeroIntro({ className = '' }) {
         variants={itemVariant}
         initial={shouldReduce ? false : 'hidden'}
         animate={isLoaded ? 'visible' : 'hidden'}
-        custom={0.35}
+        custom={0.50}
         className="flex flex-wrap items-center gap-3 sm:gap-4 pt-2"
       >
         {/* Primary Action Button: View My Work */}
@@ -152,7 +152,7 @@ export default function HeroIntro({ className = '' }) {
         variants={itemVariant}
         initial={shouldReduce ? false : 'hidden'}
         animate={isLoaded ? 'visible' : 'hidden'}
-        custom={0.45}
+        custom={0.64}
         className="pt-3 sm:pt-4 space-y-2"
       >
         <span className="block text-[11px] uppercase tracking-widest text-amber-200/60 font-semibold">
